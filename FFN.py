@@ -14,8 +14,8 @@ train_loader = DataLoader(dataset=train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(dataset=test_dataset, batch_size=64, shuffle=False)
 # Initialization of weights and biases
 no_input = 784   # MNIST images   784
-no_l2 = 14       # Hidden layer 1
-no_l3 = 14       # Hidden layer 2
+no_l2 = 256      # Hidden layer 1
+no_l3 = 64     # Hidden layer 2
 no_out = 10      # Output layer for 10 classes
 
 theta0 = np.random.rand(no_input, no_l2) * 0.001
@@ -86,14 +86,12 @@ def train(train_loader, lr, epochs):
             bias1 += lr * np.sum(s_b1, axis=0, keepdims=True)
             theta0 += lr * np.dot(inputs.T, s_b2)
             bias0 += lr * np.sum(s_b2, axis=0, keepdims=True)
-        val_x=x_test[0:10000]
-        val_y=y_test[0:10000]
-     
+       
   
         # Print average loss per epoch
         print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss / len(train_loader)}")
 
-# Set learning rate and epochsza
+# Set learning rate and epochs
 lr = 0.01
 epochs = 100
 
