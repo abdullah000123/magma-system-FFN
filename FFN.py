@@ -80,12 +80,12 @@ def train(train_loader, lr, epochs):
             # Backpropagation
             s_bt, s_b1, s_b2 = back_propagation(inputs, labels, outputs)
             # Update weights and biases
-            theta2 += lr * np.dot(a2.T, s_bt)
-            bias2 += lr * np.sum(s_bt, axis=0, keepdims=True)
-            theta1 += lr * np.dot(a1.T, s_b1)
-            bias1 += lr * np.sum(s_b1, axis=0, keepdims=True)
-            theta0 += lr * np.dot(inputs.T, s_b2)
-            bias0 += lr * np.sum(s_b2, axis=0, keepdims=True)
+            theta2 -= lr * np.dot(a2.T, s_bt)
+            bias2 -= lr * np.sum(s_bt, axis=0, keepdims=True)
+            theta1 -= lr * np.dot(a1.T, s_b1)
+            bias1 -=lr * np.sum(s_b1, axis=0, keepdims=True)
+            theta0 -= lr * np.dot(inputs.T, s_b2)
+            bias0 -= lr * np.sum(s_b2, axis=0, keepdims=True)
        
   
         # Print average loss per epoch
